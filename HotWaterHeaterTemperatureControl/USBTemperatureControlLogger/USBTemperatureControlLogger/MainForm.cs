@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
@@ -17,17 +18,21 @@ namespace USBTemperatureControlLogger
         //Running State of the thread
         private bool running = false;
 
+        private StreamWriter writer;
+
         public MainForm()
         {
             InitializeComponent();
             //Register form closing event for safe shutdown
             this.FormClosing += Form1_FormClosing;
+            writer = new StreamWriter("log_"+DateTime.Now.ToShortDateString()+"_"+DateTime.Now.ToShortTimeString()+".tsv", false);
         }
 
         void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             //Shut down acquisition thread
             running = false;
+            writer.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -130,10 +135,11 @@ namespace USBTemperatureControlLogger
             {
                 if (chart.Series[0].Points.Count > 10000)
                     chart.Series[0].Points.RemoveAt(0);
+                int relayPoint = relayOn?1:0;
                 chart.Series[0].Points.AddY(point);
                 chart.Series[1].Points.AddY(target);
-                if (relayOn) chart.Series[2].Points.AddY(1);
-                else chart.Series[2].Points.AddY(0);
+                chart.Series[2].Points.AddY(relayPoint);
+                writer.WriteLine(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + "\t" + point + "\t" + target + "\t" + relayPoint);
             }
         }
 
