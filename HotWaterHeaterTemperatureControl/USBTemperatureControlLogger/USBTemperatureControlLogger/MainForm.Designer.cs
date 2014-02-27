@@ -32,17 +32,37 @@
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.logButton = new System.Windows.Forms.Button();
+            this.connectButton = new System.Windows.Forms.Button();
             this.latestSampleLabel = new System.Windows.Forms.Label();
-            this.serialInterfaceString = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.setTempButton = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.setWindowButton = new System.Windows.Forms.Button();
-            this.averageTextBox = new System.Windows.Forms.TextBox();
             this.setAverageButton = new System.Windows.Forms.Button();
+            this.tempUnitsLabel = new System.Windows.Forms.Label();
+            this.comPortListBox = new System.Windows.Forms.ListBox();
+            this.autoModeButton = new System.Windows.Forms.Button();
+            this.forceStopButton = new System.Windows.Forms.Button();
+            this.forceStartButton = new System.Windows.Forms.Button();
+            this.tempNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.windowNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.windowUnitsLabel = new System.Windows.Forms.Label();
+            this.averageNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.averageUnitsLabel = new System.Windows.Forms.Label();
+            this.latestSampleLabelLabel = new System.Windows.Forms.Label();
+            this.runTimeLabelLabel = new System.Windows.Forms.Label();
+            this.runTimeLabel = new System.Windows.Forms.Label();
+            this.minBox = new System.Windows.Forms.PictureBox();
+            this.closeBox = new System.Windows.Forms.PictureBox();
+            this.statusLabelLabel = new System.Windows.Forms.Label();
+            this.statusLabel = new System.Windows.Forms.Label();
+            this.clearChartButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tempNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.windowNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.averageNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.closeBox)).BeginInit();
             this.SuspendLayout();
             // 
             // chart
@@ -83,8 +103,8 @@
             chartArea1.BackSecondaryColor = System.Drawing.Color.White;
             chartArea1.Name = "ChartArea1";
             this.chart.ChartAreas.Add(chartArea1);
-            this.chart.Location = new System.Drawing.Point(0, 0);
-            this.chart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chart.Location = new System.Drawing.Point(13, 72);
+            this.chart.Margin = new System.Windows.Forms.Padding(4);
             this.chart.Name = "chart";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
@@ -101,134 +121,335 @@
             this.chart.Series.Add(series3);
             this.chart.Size = new System.Drawing.Size(1187, 530);
             this.chart.TabIndex = 0;
-            this.chart.Text = "chart1";
             // 
-            // logButton
+            // connectButton
             // 
-            this.logButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.logButton.ForeColor = System.Drawing.Color.White;
-            this.logButton.Location = new System.Drawing.Point(213, 540);
-            this.logButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.logButton.Name = "logButton";
-            this.logButton.Size = new System.Drawing.Size(132, 33);
-            this.logButton.TabIndex = 1;
-            this.logButton.Text = "Log";
-            this.logButton.UseVisualStyleBackColor = true;
-            this.logButton.Click += new System.EventHandler(this.button1_Click);
+            this.connectButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.connectButton.ForeColor = System.Drawing.Color.White;
+            this.connectButton.Location = new System.Drawing.Point(26, 612);
+            this.connectButton.Margin = new System.Windows.Forms.Padding(4);
+            this.connectButton.Name = "connectButton";
+            this.connectButton.Size = new System.Drawing.Size(132, 33);
+            this.connectButton.TabIndex = 1;
+            this.connectButton.Text = "Connect";
+            this.connectButton.UseVisualStyleBackColor = true;
+            this.connectButton.Click += new System.EventHandler(this.connectButton_Click);
             // 
             // latestSampleLabel
             // 
             this.latestSampleLabel.AutoSize = true;
             this.latestSampleLabel.ForeColor = System.Drawing.Color.White;
-            this.latestSampleLabel.Location = new System.Drawing.Point(852, 551);
+            this.latestSampleLabel.Location = new System.Drawing.Point(1026, 617);
             this.latestSampleLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.latestSampleLabel.Name = "latestSampleLabel";
             this.latestSampleLabel.Size = new System.Drawing.Size(0, 17);
             this.latestSampleLabel.TabIndex = 2;
             // 
-            // serialInterfaceString
-            // 
-            this.serialInterfaceString.BackColor = System.Drawing.Color.Black;
-            this.serialInterfaceString.ForeColor = System.Drawing.Color.White;
-            this.serialInterfaceString.Location = new System.Drawing.Point(213, 510);
-            this.serialInterfaceString.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.serialInterfaceString.Name = "serialInterfaceString";
-            this.serialInterfaceString.Size = new System.Drawing.Size(132, 22);
-            this.serialInterfaceString.TabIndex = 3;
-            this.serialInterfaceString.Text = "COM4";
-            // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.Color.Black;
-            this.textBox1.ForeColor = System.Drawing.Color.White;
-            this.textBox1.Location = new System.Drawing.Point(722, 508);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(132, 22);
-            this.textBox1.TabIndex = 5;
-            this.textBox1.Text = "170F";
-            // 
             // setTempButton
             // 
+            this.setTempButton.Enabled = false;
             this.setTempButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.setTempButton.ForeColor = System.Drawing.Color.White;
-            this.setTempButton.Location = new System.Drawing.Point(722, 538);
+            this.setTempButton.Location = new System.Drawing.Point(166, 612);
             this.setTempButton.Margin = new System.Windows.Forms.Padding(4);
             this.setTempButton.Name = "setTempButton";
             this.setTempButton.Size = new System.Drawing.Size(132, 33);
             this.setTempButton.TabIndex = 4;
             this.setTempButton.Text = "Set Temperature";
             this.setTempButton.UseVisualStyleBackColor = true;
-            // 
-            // textBox2
-            // 
-            this.textBox2.BackColor = System.Drawing.Color.Black;
-            this.textBox2.ForeColor = System.Drawing.Color.White;
-            this.textBox2.Location = new System.Drawing.Point(582, 508);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(132, 22);
-            this.textBox2.TabIndex = 7;
-            this.textBox2.Text = "COM4";
+            this.setTempButton.Click += new System.EventHandler(this.setTempButton_Click);
             // 
             // setWindowButton
             // 
+            this.setWindowButton.Enabled = false;
             this.setWindowButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.setWindowButton.ForeColor = System.Drawing.Color.White;
-            this.setWindowButton.Location = new System.Drawing.Point(582, 538);
+            this.setWindowButton.Location = new System.Drawing.Point(306, 612);
             this.setWindowButton.Margin = new System.Windows.Forms.Padding(4);
             this.setWindowButton.Name = "setWindowButton";
             this.setWindowButton.Size = new System.Drawing.Size(132, 33);
             this.setWindowButton.TabIndex = 6;
             this.setWindowButton.Text = "Set Window";
             this.setWindowButton.UseVisualStyleBackColor = true;
-            // 
-            // averageTextBox
-            // 
-            this.averageTextBox.BackColor = System.Drawing.Color.Black;
-            this.averageTextBox.ForeColor = System.Drawing.Color.White;
-            this.averageTextBox.Location = new System.Drawing.Point(442, 510);
-            this.averageTextBox.Margin = new System.Windows.Forms.Padding(4);
-            this.averageTextBox.Name = "averageTextBox";
-            this.averageTextBox.Size = new System.Drawing.Size(132, 22);
-            this.averageTextBox.TabIndex = 9;
-            this.averageTextBox.Text = "COM4";
+            this.setWindowButton.Click += new System.EventHandler(this.setWindowButton_Click);
             // 
             // setAverageButton
             // 
+            this.setAverageButton.Enabled = false;
             this.setAverageButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.setAverageButton.ForeColor = System.Drawing.Color.White;
-            this.setAverageButton.Location = new System.Drawing.Point(442, 540);
+            this.setAverageButton.Location = new System.Drawing.Point(446, 612);
             this.setAverageButton.Margin = new System.Windows.Forms.Padding(4);
             this.setAverageButton.Name = "setAverageButton";
             this.setAverageButton.Size = new System.Drawing.Size(132, 33);
             this.setAverageButton.TabIndex = 8;
             this.setAverageButton.Text = "Set Average";
             this.setAverageButton.UseVisualStyleBackColor = true;
+            this.setAverageButton.Click += new System.EventHandler(this.setAverageButton_Click);
+            // 
+            // tempUnitsLabel
+            // 
+            this.tempUnitsLabel.AutoSize = true;
+            this.tempUnitsLabel.ForeColor = System.Drawing.Color.White;
+            this.tempUnitsLabel.Location = new System.Drawing.Point(257, 587);
+            this.tempUnitsLabel.Name = "tempUnitsLabel";
+            this.tempUnitsLabel.Size = new System.Drawing.Size(41, 17);
+            this.tempUnitsLabel.TabIndex = 9;
+            this.tempUnitsLabel.Text = "degC";
+            // 
+            // comPortListBox
+            // 
+            this.comPortListBox.BackColor = System.Drawing.Color.Black;
+            this.comPortListBox.ForeColor = System.Drawing.Color.White;
+            this.comPortListBox.FormattingEnabled = true;
+            this.comPortListBox.ItemHeight = 16;
+            this.comPortListBox.Location = new System.Drawing.Point(26, 585);
+            this.comPortListBox.Name = "comPortListBox";
+            this.comPortListBox.Size = new System.Drawing.Size(132, 20);
+            this.comPortListBox.TabIndex = 10;
+            // 
+            // autoModeButton
+            // 
+            this.autoModeButton.Enabled = false;
+            this.autoModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.autoModeButton.ForeColor = System.Drawing.Color.White;
+            this.autoModeButton.Location = new System.Drawing.Point(887, 612);
+            this.autoModeButton.Margin = new System.Windows.Forms.Padding(4);
+            this.autoModeButton.Name = "autoModeButton";
+            this.autoModeButton.Size = new System.Drawing.Size(132, 33);
+            this.autoModeButton.TabIndex = 11;
+            this.autoModeButton.Text = "Enable Auto";
+            this.autoModeButton.UseVisualStyleBackColor = true;
+            this.autoModeButton.Click += new System.EventHandler(this.autoModeButton_Click);
+            // 
+            // forceStopButton
+            // 
+            this.forceStopButton.Enabled = false;
+            this.forceStopButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.forceStopButton.ForeColor = System.Drawing.Color.White;
+            this.forceStopButton.Location = new System.Drawing.Point(747, 612);
+            this.forceStopButton.Margin = new System.Windows.Forms.Padding(4);
+            this.forceStopButton.Name = "forceStopButton";
+            this.forceStopButton.Size = new System.Drawing.Size(132, 33);
+            this.forceStopButton.TabIndex = 12;
+            this.forceStopButton.Text = "Force Stop";
+            this.forceStopButton.UseVisualStyleBackColor = true;
+            this.forceStopButton.Click += new System.EventHandler(this.forceStopButton_Click);
+            // 
+            // forceStartButton
+            // 
+            this.forceStartButton.Enabled = false;
+            this.forceStartButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.forceStartButton.ForeColor = System.Drawing.Color.White;
+            this.forceStartButton.Location = new System.Drawing.Point(607, 612);
+            this.forceStartButton.Margin = new System.Windows.Forms.Padding(4);
+            this.forceStartButton.Name = "forceStartButton";
+            this.forceStartButton.Size = new System.Drawing.Size(132, 33);
+            this.forceStartButton.TabIndex = 13;
+            this.forceStartButton.Text = "Force Start";
+            this.forceStartButton.UseVisualStyleBackColor = true;
+            this.forceStartButton.Click += new System.EventHandler(this.forceStartButton_Click);
+            // 
+            // tempNumericUpDown
+            // 
+            this.tempNumericUpDown.BackColor = System.Drawing.Color.Black;
+            this.tempNumericUpDown.DecimalPlaces = 2;
+            this.tempNumericUpDown.ForeColor = System.Drawing.Color.White;
+            this.tempNumericUpDown.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            this.tempNumericUpDown.Location = new System.Drawing.Point(164, 585);
+            this.tempNumericUpDown.Name = "tempNumericUpDown";
+            this.tempNumericUpDown.Size = new System.Drawing.Size(87, 22);
+            this.tempNumericUpDown.TabIndex = 14;
+            // 
+            // windowNumericUpDown
+            // 
+            this.windowNumericUpDown.BackColor = System.Drawing.Color.Black;
+            this.windowNumericUpDown.DecimalPlaces = 2;
+            this.windowNumericUpDown.ForeColor = System.Drawing.Color.White;
+            this.windowNumericUpDown.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.windowNumericUpDown.Location = new System.Drawing.Point(306, 585);
+            this.windowNumericUpDown.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.windowNumericUpDown.Name = "windowNumericUpDown";
+            this.windowNumericUpDown.Size = new System.Drawing.Size(87, 22);
+            this.windowNumericUpDown.TabIndex = 16;
+            // 
+            // windowUnitsLabel
+            // 
+            this.windowUnitsLabel.AutoSize = true;
+            this.windowUnitsLabel.ForeColor = System.Drawing.Color.White;
+            this.windowUnitsLabel.Location = new System.Drawing.Point(399, 587);
+            this.windowUnitsLabel.Name = "windowUnitsLabel";
+            this.windowUnitsLabel.Size = new System.Drawing.Size(41, 17);
+            this.windowUnitsLabel.TabIndex = 15;
+            this.windowUnitsLabel.Text = "degC";
+            // 
+            // averageNumericUpDown
+            // 
+            this.averageNumericUpDown.BackColor = System.Drawing.Color.Black;
+            this.averageNumericUpDown.ForeColor = System.Drawing.Color.White;
+            this.averageNumericUpDown.Location = new System.Drawing.Point(446, 585);
+            this.averageNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.averageNumericUpDown.Name = "averageNumericUpDown";
+            this.averageNumericUpDown.Size = new System.Drawing.Size(64, 22);
+            this.averageNumericUpDown.TabIndex = 18;
+            this.averageNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // averageUnitsLabel
+            // 
+            this.averageUnitsLabel.AutoSize = true;
+            this.averageUnitsLabel.ForeColor = System.Drawing.Color.White;
+            this.averageUnitsLabel.Location = new System.Drawing.Point(516, 587);
+            this.averageUnitsLabel.Name = "averageUnitsLabel";
+            this.averageUnitsLabel.Size = new System.Drawing.Size(62, 17);
+            this.averageUnitsLabel.TabIndex = 17;
+            this.averageUnitsLabel.Text = "Samples";
+            // 
+            // latestSampleLabelLabel
+            // 
+            this.latestSampleLabelLabel.AutoSize = true;
+            this.latestSampleLabelLabel.ForeColor = System.Drawing.Color.White;
+            this.latestSampleLabelLabel.Location = new System.Drawing.Point(1026, 596);
+            this.latestSampleLabelLabel.Name = "latestSampleLabelLabel";
+            this.latestSampleLabelLabel.Size = new System.Drawing.Size(98, 17);
+            this.latestSampleLabelLabel.TabIndex = 19;
+            this.latestSampleLabelLabel.Text = "Latest Sample";
+            // 
+            // runTimeLabelLabel
+            // 
+            this.runTimeLabelLabel.AutoSize = true;
+            this.runTimeLabelLabel.ForeColor = System.Drawing.Color.White;
+            this.runTimeLabelLabel.Location = new System.Drawing.Point(1130, 596);
+            this.runTimeLabelLabel.Name = "runTimeLabelLabel";
+            this.runTimeLabelLabel.Size = new System.Drawing.Size(69, 17);
+            this.runTimeLabelLabel.TabIndex = 20;
+            this.runTimeLabelLabel.Text = "Run Time";
+            // 
+            // runTimeLabel
+            // 
+            this.runTimeLabel.AutoSize = true;
+            this.runTimeLabel.ForeColor = System.Drawing.Color.White;
+            this.runTimeLabel.Location = new System.Drawing.Point(1130, 617);
+            this.runTimeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.runTimeLabel.Name = "runTimeLabel";
+            this.runTimeLabel.Size = new System.Drawing.Size(0, 17);
+            this.runTimeLabel.TabIndex = 21;
+            // 
+            // minBox
+            // 
+            this.minBox.Image = global::USBTemperatureControlLogger.Properties.Resources.appbar_minus_darkgray;
+            this.minBox.Location = new System.Drawing.Point(1029, 12);
+            this.minBox.Name = "minBox";
+            this.minBox.Size = new System.Drawing.Size(76, 76);
+            this.minBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.minBox.TabIndex = 23;
+            this.minBox.TabStop = false;
+            // 
+            // closeBox
+            // 
+            this.closeBox.Image = global::USBTemperatureControlLogger.Properties.Resources.appbar_close_darkgray;
+            this.closeBox.Location = new System.Drawing.Point(1111, 12);
+            this.closeBox.Name = "closeBox";
+            this.closeBox.Size = new System.Drawing.Size(76, 76);
+            this.closeBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.closeBox.TabIndex = 22;
+            this.closeBox.TabStop = false;
+            // 
+            // statusLabelLabel
+            // 
+            this.statusLabelLabel.AutoSize = true;
+            this.statusLabelLabel.ForeColor = System.Drawing.Color.White;
+            this.statusLabelLabel.Location = new System.Drawing.Point(44, 35);
+            this.statusLabelLabel.Name = "statusLabelLabel";
+            this.statusLabelLabel.Size = new System.Drawing.Size(56, 17);
+            this.statusLabelLabel.TabIndex = 24;
+            this.statusLabelLabel.Text = "Status: ";
+            // 
+            // statusLabel
+            // 
+            this.statusLabel.AutoSize = true;
+            this.statusLabel.ForeColor = System.Drawing.Color.Red;
+            this.statusLabel.Location = new System.Drawing.Point(102, 35);
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(94, 17);
+            this.statusLabel.TabIndex = 25;
+            this.statusLabel.Text = "Disconnected";
+            // 
+            // clearChartButton
+            // 
+            this.clearChartButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.clearChartButton.ForeColor = System.Drawing.Color.White;
+            this.clearChartButton.Location = new System.Drawing.Point(541, 35);
+            this.clearChartButton.Margin = new System.Windows.Forms.Padding(4);
+            this.clearChartButton.Name = "clearChartButton";
+            this.clearChartButton.Size = new System.Drawing.Size(132, 33);
+            this.clearChartButton.TabIndex = 26;
+            this.clearChartButton.Text = "Clear Chart";
+            this.clearChartButton.UseVisualStyleBackColor = true;
+            this.clearChartButton.Click += new System.EventHandler(this.clearChartButton_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(1188, 586);
-            this.Controls.Add(this.averageTextBox);
+            this.ClientSize = new System.Drawing.Size(1225, 657);
+            this.Controls.Add(this.clearChartButton);
+            this.Controls.Add(this.statusLabel);
+            this.Controls.Add(this.statusLabelLabel);
+            this.Controls.Add(this.minBox);
+            this.Controls.Add(this.closeBox);
+            this.Controls.Add(this.runTimeLabel);
+            this.Controls.Add(this.runTimeLabelLabel);
+            this.Controls.Add(this.latestSampleLabelLabel);
+            this.Controls.Add(this.averageNumericUpDown);
+            this.Controls.Add(this.averageUnitsLabel);
+            this.Controls.Add(this.windowNumericUpDown);
+            this.Controls.Add(this.windowUnitsLabel);
+            this.Controls.Add(this.tempNumericUpDown);
+            this.Controls.Add(this.forceStartButton);
+            this.Controls.Add(this.forceStopButton);
+            this.Controls.Add(this.autoModeButton);
+            this.Controls.Add(this.comPortListBox);
+            this.Controls.Add(this.tempUnitsLabel);
             this.Controls.Add(this.setAverageButton);
-            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.setWindowButton);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.setTempButton);
-            this.Controls.Add(this.serialInterfaceString);
             this.Controls.Add(this.latestSampleLabel);
-            this.Controls.Add(this.logButton);
+            this.Controls.Add(this.connectButton);
             this.Controls.Add(this.chart);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.ShowIcon = false;
-            this.Text = "Logger";
+            this.Text = "USB Temperature Control Logger";
             ((System.ComponentModel.ISupportInitialize)(this.chart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tempNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.windowNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.averageNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.closeBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -237,15 +458,29 @@
         #endregion
 
         private System.Windows.Forms.DataVisualization.Charting.Chart chart;
-        private System.Windows.Forms.Button logButton;
+        private System.Windows.Forms.Button connectButton;
         private System.Windows.Forms.Label latestSampleLabel;
-        private System.Windows.Forms.TextBox serialInterfaceString;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button setTempButton;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button setWindowButton;
-        private System.Windows.Forms.TextBox averageTextBox;
         private System.Windows.Forms.Button setAverageButton;
+        private System.Windows.Forms.Label tempUnitsLabel;
+        private System.Windows.Forms.ListBox comPortListBox;
+        private System.Windows.Forms.Button autoModeButton;
+        private System.Windows.Forms.Button forceStopButton;
+        private System.Windows.Forms.Button forceStartButton;
+        private System.Windows.Forms.NumericUpDown tempNumericUpDown;
+        private System.Windows.Forms.NumericUpDown windowNumericUpDown;
+        private System.Windows.Forms.Label windowUnitsLabel;
+        private System.Windows.Forms.NumericUpDown averageNumericUpDown;
+        private System.Windows.Forms.Label averageUnitsLabel;
+        private System.Windows.Forms.Label latestSampleLabelLabel;
+        private System.Windows.Forms.Label runTimeLabelLabel;
+        private System.Windows.Forms.Label runTimeLabel;
+        private System.Windows.Forms.PictureBox closeBox;
+        private System.Windows.Forms.PictureBox minBox;
+        private System.Windows.Forms.Label statusLabelLabel;
+        private System.Windows.Forms.Label statusLabel;
+        private System.Windows.Forms.Button clearChartButton;
     }
 }
 
