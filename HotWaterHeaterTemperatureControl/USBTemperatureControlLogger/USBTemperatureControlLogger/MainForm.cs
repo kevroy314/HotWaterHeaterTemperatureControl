@@ -21,7 +21,7 @@ namespace USBTemperatureControlLogger
 
         private bool comPortDetectorThreadRunning = false;
         private Thread comPortDetectorThread;
-
+        private string filename;
         private System.Collections.Generic.Queue<Tuple<Command,double>> commandQueue;
 
         private enum Command {SetTemperature, SetWindow, SetAverage, ForceStart, ForceStop, AutoMode};
@@ -171,10 +171,8 @@ namespace USBTemperatureControlLogger
 
         private void ResetFileWriter()
         {
-            try { writer.Close(); } catch (Exception) { }
             DateTime current = DateTime.Now;
-            string filepath = "log_d" + current.Day + "-" + current.Month + "-" + current.Year + "_t" + current.Hour + "-" + current.Minute + "-" + current.Second + "-" + current.Millisecond + ".tsv";
-            writer = new StreamWriter(filepath, false);
+            filename = "log_d" + current.Day + "-" + current.Month + "-" + current.Year + "_t" + current.Hour + "-" + current.Minute + "-" + current.Second + "-" + current.Millisecond + ".tsv";
         }
 
         void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -182,7 +180,6 @@ namespace USBTemperatureControlLogger
             //Shut down acquisition thread
             running = false;
             comPortDetectorThreadRunning = false;
-            writer.Close();
         }
 
         private void connectButton_Click(object sender, EventArgs e)
@@ -210,7 +207,8 @@ namespace USBTemperatureControlLogger
             try
             {
                 //Try to open a serial connection
-                SerialPort serial = new SerialPort(""); //TODO
+                string comPort = GetSelectedComPort();
+                SerialPort serial = new SerialPort(comPort);
                 serial.Open();
 
                 while (running)
@@ -260,7 +258,7 @@ namespace USBTemperatureControlLogger
                         Thread.Sleep(1);
                     }
                     TimeSpan runTimeSpan = DateTime.Now.Subtract(startTime);
-                    runTimeLabel.Text = runTimeSpan.TotalHours + "h" + runTimeSpan.TotalMilliseconds + "m" + runTimeSpan.TotalSeconds + "." + runTimeSpan.TotalMilliseconds + "s";
+                    SetRunTimeLabelText(((int)runTimeSpan.TotalHours) + "h" + ((int)runTimeSpan.TotalMinutes) + "m" + ((int)runTimeSpan.TotalSeconds) + "s");
                 }
                 //Close the serial connection
                 serial.Close();
@@ -277,6 +275,38 @@ namespace USBTemperatureControlLogger
         delegate void SetConnectionStateCallback(bool connected);
         delegate void AddPointCallback(double point, double target, bool relayOn);
         delegate void RefreshChartCallback();
+        delegate string GetSelectedComPortCallback();
+        delegate void SetRunTimeLabelTextCallback(string text);
+
+        private void SetRunTimeLabelText(string text)
+        {
+            if(runTimeLabel.InvokeRequired)
+            {
+                SetRunTimeLabelTextCallback d = new SetRunTimeLabelTextCallback(SetRunTimeLabelText);
+                this.Invoke(d, new object[] { text });
+            }
+            else
+            {
+                runTimeLabel.Text = text;
+            }
+        }
+
+        private string GetSelectedComPort()
+        {
+            if (comPortListBox.InvokeRequired)
+            {
+                GetSelectedComPortCallback d = new GetSelectedComPortCallback(GetSelectedComPort);
+                IAsyncResult res = this.BeginInvoke(d, new object[] {  });
+                return (string)this.EndInvoke(res);
+            }
+            else
+            {
+                if (comPortListBox.SelectedIndex < 0)
+                    return (string)comPortListBox.Items[0];
+                else
+                    return (string)comPortListBox.SelectedItem;
+            }
+        }
 
         //Set the label text for current sample value
         private void SetSampleLabelText(string text)
@@ -361,7 +391,9 @@ namespace USBTemperatureControlLogger
                 chart.Series[0].Points.AddY(point);
                 chart.Series[1].Points.AddY(target);
                 chart.Series[2].Points.AddY(relayPoint);
+                writer = new StreamWriter(filename,true);
                 writer.WriteLine(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + "\t" + point + "\t" + target + "\t" + relayPoint);
+                writer.Close();
             }
         }
 
