@@ -57,6 +57,7 @@
             this.statusLabelLabel = new System.Windows.Forms.Label();
             this.statusLabel = new System.Windows.Forms.Label();
             this.clearChartButton = new System.Windows.Forms.Button();
+            this.ipAddressTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tempNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.windowNumericUpDown)).BeginInit();
@@ -103,8 +104,7 @@
             chartArea1.BackSecondaryColor = System.Drawing.Color.White;
             chartArea1.Name = "ChartArea1";
             this.chart.ChartAreas.Add(chartArea1);
-            this.chart.Location = new System.Drawing.Point(13, 72);
-            this.chart.Margin = new System.Windows.Forms.Padding(4);
+            this.chart.Location = new System.Drawing.Point(10, 38);
             this.chart.Name = "chart";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
@@ -119,17 +119,16 @@
             this.chart.Series.Add(series1);
             this.chart.Series.Add(series2);
             this.chart.Series.Add(series3);
-            this.chart.Size = new System.Drawing.Size(1187, 530);
+            this.chart.Size = new System.Drawing.Size(890, 431);
             this.chart.TabIndex = 0;
             // 
             // connectButton
             // 
             this.connectButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.connectButton.ForeColor = System.Drawing.Color.White;
-            this.connectButton.Location = new System.Drawing.Point(26, 612);
-            this.connectButton.Margin = new System.Windows.Forms.Padding(4);
+            this.connectButton.Location = new System.Drawing.Point(20, 497);
             this.connectButton.Name = "connectButton";
-            this.connectButton.Size = new System.Drawing.Size(132, 33);
+            this.connectButton.Size = new System.Drawing.Size(99, 27);
             this.connectButton.TabIndex = 1;
             this.connectButton.Text = "Connect";
             this.connectButton.UseVisualStyleBackColor = true;
@@ -139,10 +138,9 @@
             // 
             this.latestSampleLabel.AutoSize = true;
             this.latestSampleLabel.ForeColor = System.Drawing.Color.White;
-            this.latestSampleLabel.Location = new System.Drawing.Point(1026, 617);
-            this.latestSampleLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.latestSampleLabel.Location = new System.Drawing.Point(770, 501);
             this.latestSampleLabel.Name = "latestSampleLabel";
-            this.latestSampleLabel.Size = new System.Drawing.Size(0, 17);
+            this.latestSampleLabel.Size = new System.Drawing.Size(0, 13);
             this.latestSampleLabel.TabIndex = 2;
             // 
             // setTempButton
@@ -150,10 +148,9 @@
             this.setTempButton.Enabled = false;
             this.setTempButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.setTempButton.ForeColor = System.Drawing.Color.White;
-            this.setTempButton.Location = new System.Drawing.Point(166, 612);
-            this.setTempButton.Margin = new System.Windows.Forms.Padding(4);
+            this.setTempButton.Location = new System.Drawing.Point(124, 497);
             this.setTempButton.Name = "setTempButton";
-            this.setTempButton.Size = new System.Drawing.Size(132, 33);
+            this.setTempButton.Size = new System.Drawing.Size(99, 27);
             this.setTempButton.TabIndex = 4;
             this.setTempButton.Text = "Set Temperature";
             this.setTempButton.UseVisualStyleBackColor = true;
@@ -164,10 +161,9 @@
             this.setWindowButton.Enabled = false;
             this.setWindowButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.setWindowButton.ForeColor = System.Drawing.Color.White;
-            this.setWindowButton.Location = new System.Drawing.Point(306, 612);
-            this.setWindowButton.Margin = new System.Windows.Forms.Padding(4);
+            this.setWindowButton.Location = new System.Drawing.Point(230, 497);
             this.setWindowButton.Name = "setWindowButton";
-            this.setWindowButton.Size = new System.Drawing.Size(132, 33);
+            this.setWindowButton.Size = new System.Drawing.Size(99, 27);
             this.setWindowButton.TabIndex = 6;
             this.setWindowButton.Text = "Set Window";
             this.setWindowButton.UseVisualStyleBackColor = true;
@@ -178,10 +174,9 @@
             this.setAverageButton.Enabled = false;
             this.setAverageButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.setAverageButton.ForeColor = System.Drawing.Color.White;
-            this.setAverageButton.Location = new System.Drawing.Point(446, 612);
-            this.setAverageButton.Margin = new System.Windows.Forms.Padding(4);
+            this.setAverageButton.Location = new System.Drawing.Point(334, 497);
             this.setAverageButton.Name = "setAverageButton";
-            this.setAverageButton.Size = new System.Drawing.Size(132, 33);
+            this.setAverageButton.Size = new System.Drawing.Size(99, 27);
             this.setAverageButton.TabIndex = 8;
             this.setAverageButton.Text = "Set Average";
             this.setAverageButton.UseVisualStyleBackColor = true;
@@ -191,9 +186,10 @@
             // 
             this.tempUnitsLabel.AutoSize = true;
             this.tempUnitsLabel.ForeColor = System.Drawing.Color.White;
-            this.tempUnitsLabel.Location = new System.Drawing.Point(257, 587);
+            this.tempUnitsLabel.Location = new System.Drawing.Point(193, 477);
+            this.tempUnitsLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.tempUnitsLabel.Name = "tempUnitsLabel";
-            this.tempUnitsLabel.Size = new System.Drawing.Size(41, 17);
+            this.tempUnitsLabel.Size = new System.Drawing.Size(32, 13);
             this.tempUnitsLabel.TabIndex = 9;
             this.tempUnitsLabel.Text = "degC";
             // 
@@ -202,10 +198,10 @@
             this.comPortListBox.BackColor = System.Drawing.Color.Black;
             this.comPortListBox.ForeColor = System.Drawing.Color.White;
             this.comPortListBox.FormattingEnabled = true;
-            this.comPortListBox.ItemHeight = 16;
-            this.comPortListBox.Location = new System.Drawing.Point(26, 585);
+            this.comPortListBox.Location = new System.Drawing.Point(20, 475);
+            this.comPortListBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comPortListBox.Name = "comPortListBox";
-            this.comPortListBox.Size = new System.Drawing.Size(132, 20);
+            this.comPortListBox.Size = new System.Drawing.Size(100, 17);
             this.comPortListBox.TabIndex = 10;
             // 
             // autoModeButton
@@ -213,10 +209,9 @@
             this.autoModeButton.Enabled = false;
             this.autoModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.autoModeButton.ForeColor = System.Drawing.Color.White;
-            this.autoModeButton.Location = new System.Drawing.Point(887, 612);
-            this.autoModeButton.Margin = new System.Windows.Forms.Padding(4);
+            this.autoModeButton.Location = new System.Drawing.Point(665, 497);
             this.autoModeButton.Name = "autoModeButton";
-            this.autoModeButton.Size = new System.Drawing.Size(132, 33);
+            this.autoModeButton.Size = new System.Drawing.Size(99, 27);
             this.autoModeButton.TabIndex = 11;
             this.autoModeButton.Text = "Enable Auto";
             this.autoModeButton.UseVisualStyleBackColor = true;
@@ -227,10 +222,9 @@
             this.forceStopButton.Enabled = false;
             this.forceStopButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.forceStopButton.ForeColor = System.Drawing.Color.White;
-            this.forceStopButton.Location = new System.Drawing.Point(747, 612);
-            this.forceStopButton.Margin = new System.Windows.Forms.Padding(4);
+            this.forceStopButton.Location = new System.Drawing.Point(560, 497);
             this.forceStopButton.Name = "forceStopButton";
-            this.forceStopButton.Size = new System.Drawing.Size(132, 33);
+            this.forceStopButton.Size = new System.Drawing.Size(99, 27);
             this.forceStopButton.TabIndex = 12;
             this.forceStopButton.Text = "Force Stop";
             this.forceStopButton.UseVisualStyleBackColor = true;
@@ -241,10 +235,9 @@
             this.forceStartButton.Enabled = false;
             this.forceStartButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.forceStartButton.ForeColor = System.Drawing.Color.White;
-            this.forceStartButton.Location = new System.Drawing.Point(607, 612);
-            this.forceStartButton.Margin = new System.Windows.Forms.Padding(4);
+            this.forceStartButton.Location = new System.Drawing.Point(455, 497);
             this.forceStartButton.Name = "forceStartButton";
-            this.forceStartButton.Size = new System.Drawing.Size(132, 33);
+            this.forceStartButton.Size = new System.Drawing.Size(99, 27);
             this.forceStartButton.TabIndex = 13;
             this.forceStartButton.Text = "Force Start";
             this.forceStartButton.UseVisualStyleBackColor = true;
@@ -260,9 +253,10 @@
             0,
             0,
             65536});
-            this.tempNumericUpDown.Location = new System.Drawing.Point(164, 585);
+            this.tempNumericUpDown.Location = new System.Drawing.Point(123, 475);
+            this.tempNumericUpDown.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tempNumericUpDown.Name = "tempNumericUpDown";
-            this.tempNumericUpDown.Size = new System.Drawing.Size(87, 22);
+            this.tempNumericUpDown.Size = new System.Drawing.Size(65, 20);
             this.tempNumericUpDown.TabIndex = 14;
             // 
             // windowNumericUpDown
@@ -275,23 +269,25 @@
             0,
             0,
             65536});
-            this.windowNumericUpDown.Location = new System.Drawing.Point(306, 585);
+            this.windowNumericUpDown.Location = new System.Drawing.Point(230, 475);
+            this.windowNumericUpDown.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.windowNumericUpDown.Maximum = new decimal(new int[] {
             10,
             0,
             0,
             0});
             this.windowNumericUpDown.Name = "windowNumericUpDown";
-            this.windowNumericUpDown.Size = new System.Drawing.Size(87, 22);
+            this.windowNumericUpDown.Size = new System.Drawing.Size(65, 20);
             this.windowNumericUpDown.TabIndex = 16;
             // 
             // windowUnitsLabel
             // 
             this.windowUnitsLabel.AutoSize = true;
             this.windowUnitsLabel.ForeColor = System.Drawing.Color.White;
-            this.windowUnitsLabel.Location = new System.Drawing.Point(399, 587);
+            this.windowUnitsLabel.Location = new System.Drawing.Point(299, 477);
+            this.windowUnitsLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.windowUnitsLabel.Name = "windowUnitsLabel";
-            this.windowUnitsLabel.Size = new System.Drawing.Size(41, 17);
+            this.windowUnitsLabel.Size = new System.Drawing.Size(32, 13);
             this.windowUnitsLabel.TabIndex = 15;
             this.windowUnitsLabel.Text = "degC";
             // 
@@ -299,14 +295,15 @@
             // 
             this.averageNumericUpDown.BackColor = System.Drawing.Color.Black;
             this.averageNumericUpDown.ForeColor = System.Drawing.Color.White;
-            this.averageNumericUpDown.Location = new System.Drawing.Point(446, 585);
+            this.averageNumericUpDown.Location = new System.Drawing.Point(334, 475);
+            this.averageNumericUpDown.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.averageNumericUpDown.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.averageNumericUpDown.Name = "averageNumericUpDown";
-            this.averageNumericUpDown.Size = new System.Drawing.Size(64, 22);
+            this.averageNumericUpDown.Size = new System.Drawing.Size(48, 20);
             this.averageNumericUpDown.TabIndex = 18;
             this.averageNumericUpDown.Value = new decimal(new int[] {
             1,
@@ -318,9 +315,10 @@
             // 
             this.averageUnitsLabel.AutoSize = true;
             this.averageUnitsLabel.ForeColor = System.Drawing.Color.White;
-            this.averageUnitsLabel.Location = new System.Drawing.Point(516, 587);
+            this.averageUnitsLabel.Location = new System.Drawing.Point(387, 477);
+            this.averageUnitsLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.averageUnitsLabel.Name = "averageUnitsLabel";
-            this.averageUnitsLabel.Size = new System.Drawing.Size(62, 17);
+            this.averageUnitsLabel.Size = new System.Drawing.Size(47, 13);
             this.averageUnitsLabel.TabIndex = 17;
             this.averageUnitsLabel.Text = "Samples";
             // 
@@ -328,9 +326,10 @@
             // 
             this.latestSampleLabelLabel.AutoSize = true;
             this.latestSampleLabelLabel.ForeColor = System.Drawing.Color.White;
-            this.latestSampleLabelLabel.Location = new System.Drawing.Point(1026, 596);
+            this.latestSampleLabelLabel.Location = new System.Drawing.Point(770, 484);
+            this.latestSampleLabelLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.latestSampleLabelLabel.Name = "latestSampleLabelLabel";
-            this.latestSampleLabelLabel.Size = new System.Drawing.Size(98, 17);
+            this.latestSampleLabelLabel.Size = new System.Drawing.Size(74, 13);
             this.latestSampleLabelLabel.TabIndex = 19;
             this.latestSampleLabelLabel.Text = "Latest Sample";
             // 
@@ -338,9 +337,10 @@
             // 
             this.runTimeLabelLabel.AutoSize = true;
             this.runTimeLabelLabel.ForeColor = System.Drawing.Color.White;
-            this.runTimeLabelLabel.Location = new System.Drawing.Point(1130, 596);
+            this.runTimeLabelLabel.Location = new System.Drawing.Point(848, 484);
+            this.runTimeLabelLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.runTimeLabelLabel.Name = "runTimeLabelLabel";
-            this.runTimeLabelLabel.Size = new System.Drawing.Size(69, 17);
+            this.runTimeLabelLabel.Size = new System.Drawing.Size(53, 13);
             this.runTimeLabelLabel.TabIndex = 20;
             this.runTimeLabelLabel.Text = "Run Time";
             // 
@@ -348,16 +348,16 @@
             // 
             this.runTimeLabel.AutoSize = true;
             this.runTimeLabel.ForeColor = System.Drawing.Color.White;
-            this.runTimeLabel.Location = new System.Drawing.Point(1130, 617);
-            this.runTimeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.runTimeLabel.Location = new System.Drawing.Point(848, 501);
             this.runTimeLabel.Name = "runTimeLabel";
-            this.runTimeLabel.Size = new System.Drawing.Size(0, 17);
+            this.runTimeLabel.Size = new System.Drawing.Size(0, 13);
             this.runTimeLabel.TabIndex = 21;
             // 
             // minBox
             // 
             this.minBox.Image = global::USBTemperatureControlLogger.Properties.Resources.appbar_minus_darkgray;
-            this.minBox.Location = new System.Drawing.Point(1029, 12);
+            this.minBox.Location = new System.Drawing.Point(772, 10);
+            this.minBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.minBox.Name = "minBox";
             this.minBox.Size = new System.Drawing.Size(76, 76);
             this.minBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -367,7 +367,8 @@
             // closeBox
             // 
             this.closeBox.Image = global::USBTemperatureControlLogger.Properties.Resources.appbar_close_darkgray;
-            this.closeBox.Location = new System.Drawing.Point(1111, 12);
+            this.closeBox.Location = new System.Drawing.Point(833, 10);
+            this.closeBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.closeBox.Name = "closeBox";
             this.closeBox.Size = new System.Drawing.Size(76, 76);
             this.closeBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -378,9 +379,10 @@
             // 
             this.statusLabelLabel.AutoSize = true;
             this.statusLabelLabel.ForeColor = System.Drawing.Color.White;
-            this.statusLabelLabel.Location = new System.Drawing.Point(44, 35);
+            this.statusLabelLabel.Location = new System.Drawing.Point(33, 28);
+            this.statusLabelLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.statusLabelLabel.Name = "statusLabelLabel";
-            this.statusLabelLabel.Size = new System.Drawing.Size(56, 17);
+            this.statusLabelLabel.Size = new System.Drawing.Size(43, 13);
             this.statusLabelLabel.TabIndex = 24;
             this.statusLabelLabel.Text = "Status: ";
             // 
@@ -388,9 +390,10 @@
             // 
             this.statusLabel.AutoSize = true;
             this.statusLabel.ForeColor = System.Drawing.Color.Red;
-            this.statusLabel.Location = new System.Drawing.Point(102, 35);
+            this.statusLabel.Location = new System.Drawing.Point(76, 28);
+            this.statusLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(94, 17);
+            this.statusLabel.Size = new System.Drawing.Size(73, 13);
             this.statusLabel.TabIndex = 25;
             this.statusLabel.Text = "Disconnected";
             // 
@@ -398,21 +401,35 @@
             // 
             this.clearChartButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.clearChartButton.ForeColor = System.Drawing.Color.White;
-            this.clearChartButton.Location = new System.Drawing.Point(541, 35);
-            this.clearChartButton.Margin = new System.Windows.Forms.Padding(4);
+            this.clearChartButton.Location = new System.Drawing.Point(406, 18);
             this.clearChartButton.Name = "clearChartButton";
-            this.clearChartButton.Size = new System.Drawing.Size(132, 33);
+            this.clearChartButton.Size = new System.Drawing.Size(99, 27);
             this.clearChartButton.TabIndex = 26;
             this.clearChartButton.Text = "Clear Chart";
             this.clearChartButton.UseVisualStyleBackColor = true;
             this.clearChartButton.Click += new System.EventHandler(this.clearChartButton_Click);
             // 
+            // ipAddressTextBox
+            // 
+            this.ipAddressTextBox.AutoCompleteCustomSource.AddRange(new string[] {
+            "192.168.1.60"});
+            this.ipAddressTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.ipAddressTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.HistoryList;
+            this.ipAddressTextBox.BackColor = System.Drawing.Color.Black;
+            this.ipAddressTextBox.ForeColor = System.Drawing.Color.White;
+            this.ipAddressTextBox.Location = new System.Drawing.Point(20, 450);
+            this.ipAddressTextBox.Name = "ipAddressTextBox";
+            this.ipAddressTextBox.Size = new System.Drawing.Size(99, 20);
+            this.ipAddressTextBox.TabIndex = 27;
+            this.ipAddressTextBox.Text = "192.168.1.60";
+            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(1225, 657);
+            this.ClientSize = new System.Drawing.Size(919, 534);
+            this.Controls.Add(this.ipAddressTextBox);
             this.Controls.Add(this.clearChartButton);
             this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.statusLabelLabel);
@@ -439,7 +456,6 @@
             this.Controls.Add(this.chart);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.ShowIcon = false;
@@ -481,6 +497,7 @@
         private System.Windows.Forms.Label statusLabelLabel;
         private System.Windows.Forms.Label statusLabel;
         private System.Windows.Forms.Button clearChartButton;
+        private System.Windows.Forms.TextBox ipAddressTextBox;
     }
 }
 

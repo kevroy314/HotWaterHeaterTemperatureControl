@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.IO.Ports;
 using System.Linq;
+using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -206,18 +207,42 @@ namespace USBTemperatureControlLogger
 
             try
             {
+                string ip = GetIPAddress();
+                SerialPort serial = null;
+                TcpClient client = null;
+                NetworkStream stream = null;
+
+                if(ip=="")
+                {
                 //Try to open a serial connection
-                string comPort = GetSelectedComPort();
-                SerialPort serial = new SerialPort(comPort);
-                serial.Open();
+                    string comPort = GetSelectedComPort();
+                    serial = new SerialPort(comPort);
+                    serial.Open();
+                }
+                else
+                {
+                    client = new TcpClient(ip, 1234);
+                    stream = client.GetStream();
+                }
 
                 while (running)
                 {
                     //Poll the controller for status
-                    serial.Write("d");
+                    if(ip=="")
+                        serial.Write("d");
+                    else
+                        stream.Write(System.Text.Encoding.ASCII.GetBytes("d"), 0, 1);
                     //Wait for a response (250 was experimentally determined)
                     Thread.Sleep(250);
-                    string tmp = serial.ReadExisting();
+                    string tmp = "";
+                    if(ip=="")
+                         tmp = serial.ReadExisting();
+                    else
+                    {
+                        byte[] data = new Byte[256];
+                        Int32 bytes = stream.Read(data, 0, data.Length);
+                        tmp = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
+                    }
                     string[] tmpSplit = tmp.Split(new char[] { ':', ' ', '/' }, StringSplitOptions.RemoveEmptyEntries);
                     //Extract data and add to chart if valid
                     try
@@ -234,34 +259,45 @@ namespace USBTemperatureControlLogger
                     while (commandQueue.Count > 0)
                     {
                         Tuple<Command,double> command = commandQueue.Dequeue();
+                        string writeString = "";
                         switch (command.Item1)
                         {
                             case Command.AutoMode:
-                                serial.Write("a");
+                                writeString = "a";
                                 break;
                             case Command.ForceStart:
-                                serial.Write("1");
+                                writeString = "1";
                                 break;
                             case Command.ForceStop:
-                                serial.Write("0");
+                                writeString = "0";
                                 break;
                             case Command.SetAverage:
-                                serial.Write("m" + command.Item2.ToString("F") + "*");
+                                writeString = "m" + command.Item2.ToString("F") + "*";
                                 break;
                             case Command.SetTemperature:
-                                serial.Write("t" + command.Item2.ToString("F") + "*");
+                                writeString = "t" + command.Item2.ToString("F") + "*";
                                 break;
                             case Command.SetWindow:
-                                serial.Write("w" + command.Item2.ToString("F") + "*");
+                                writeString = "w" + command.Item2.ToString("F") + "*";
                                 break;
                         }
+                        if(ip=="")
+                            serial.Write("d");
+                        else
+                            stream.Write(System.Text.Encoding.ASCII.GetBytes(writeString), 0, writeString.Length);
                         Thread.Sleep(1);
                     }
                     TimeSpan runTimeSpan = DateTime.Now.Subtract(startTime);
-                    SetRunTimeLabelText(((int)runTimeSpan.TotalHours) + "h" + ((int)runTimeSpan.TotalMinutes) + "m" + ((int)runTimeSpan.TotalSeconds) + "s");
+                    SetRunTimeLabelText(((int)runTimeSpan.TotalHours) + "h" + ((int)runTimeSpan.Minutes) + "m" + ((int)runTimeSpan.Seconds) + "s");
                 }
-                //Close the serial connection
-                serial.Close();
+                if(ip=="")
+                    //Close the serial connection
+                    serial.Close();
+                else
+                {
+                    stream.Close();
+                    client.Close();
+                }
             }
             catch (Exception) {  MessageBox.Show("Problem with serial connection. Is the port correct?"); running = false; }
             //Reset button text
@@ -277,7 +313,7 @@ namespace USBTemperatureControlLogger
         delegate void RefreshChartCallback();
         delegate string GetSelectedComPortCallback();
         delegate void SetRunTimeLabelTextCallback(string text);
-
+        delegate string GetIPAddressCallback();
         private void SetRunTimeLabelText(string text)
         {
             if(runTimeLabel.InvokeRequired)
@@ -305,6 +341,24 @@ namespace USBTemperatureControlLogger
                     return (string)comPortListBox.Items[0];
                 else
                     return (string)comPortListBox.SelectedItem;
+            }
+        }
+
+        private string GetIPAddress()
+        {
+            if(ipAddressTextBox.InvokeRequired)
+            {
+                GetIPAddressCallback d = new GetIPAddressCallback(GetIPAddress);
+                IAsyncResult res = this.BeginInvoke(d, new object[] { });
+                return (string)this.EndInvoke(res);
+            }
+            else
+            {
+                string ip = ipAddressTextBox.Text;
+                if(System.Text.RegularExpressions.Regex.IsMatch(ip,"\\b(?:\\d{1,3}\\.){3}\\d{1,3}\\b"))
+                    return ip;
+                else
+                    return "";
             }
         }
 
