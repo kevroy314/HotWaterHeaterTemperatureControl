@@ -199,7 +199,7 @@
             this.comPortListBox.ForeColor = System.Drawing.Color.White;
             this.comPortListBox.FormattingEnabled = true;
             this.comPortListBox.Location = new System.Drawing.Point(20, 475);
-            this.comPortListBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comPortListBox.Margin = new System.Windows.Forms.Padding(2);
             this.comPortListBox.Name = "comPortListBox";
             this.comPortListBox.Size = new System.Drawing.Size(100, 17);
             this.comPortListBox.TabIndex = 10;
@@ -254,7 +254,7 @@
             0,
             65536});
             this.tempNumericUpDown.Location = new System.Drawing.Point(123, 475);
-            this.tempNumericUpDown.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tempNumericUpDown.Margin = new System.Windows.Forms.Padding(2);
             this.tempNumericUpDown.Name = "tempNumericUpDown";
             this.tempNumericUpDown.Size = new System.Drawing.Size(65, 20);
             this.tempNumericUpDown.TabIndex = 14;
@@ -270,7 +270,7 @@
             0,
             65536});
             this.windowNumericUpDown.Location = new System.Drawing.Point(230, 475);
-            this.windowNumericUpDown.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.windowNumericUpDown.Margin = new System.Windows.Forms.Padding(2);
             this.windowNumericUpDown.Maximum = new decimal(new int[] {
             10,
             0,
@@ -296,7 +296,7 @@
             this.averageNumericUpDown.BackColor = System.Drawing.Color.Black;
             this.averageNumericUpDown.ForeColor = System.Drawing.Color.White;
             this.averageNumericUpDown.Location = new System.Drawing.Point(334, 475);
-            this.averageNumericUpDown.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.averageNumericUpDown.Margin = new System.Windows.Forms.Padding(2);
             this.averageNumericUpDown.Minimum = new decimal(new int[] {
             1,
             0,
@@ -355,9 +355,10 @@
             // 
             // minBox
             // 
+            this.minBox.BackColor = System.Drawing.Color.Transparent;
             this.minBox.Image = global::USBTemperatureControlLogger.Properties.Resources.appbar_minus_darkgray;
             this.minBox.Location = new System.Drawing.Point(772, 10);
-            this.minBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.minBox.Margin = new System.Windows.Forms.Padding(2);
             this.minBox.Name = "minBox";
             this.minBox.Size = new System.Drawing.Size(76, 76);
             this.minBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -368,7 +369,7 @@
             // 
             this.closeBox.Image = global::USBTemperatureControlLogger.Properties.Resources.appbar_close_darkgray;
             this.closeBox.Location = new System.Drawing.Point(833, 10);
-            this.closeBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.closeBox.Margin = new System.Windows.Forms.Padding(2);
             this.closeBox.Name = "closeBox";
             this.closeBox.Size = new System.Drawing.Size(76, 76);
             this.closeBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;

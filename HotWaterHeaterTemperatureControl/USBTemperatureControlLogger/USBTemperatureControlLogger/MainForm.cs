@@ -52,9 +52,6 @@ namespace USBTemperatureControlLogger
 
             string[] availableComPorts = SerialPort.GetPortNames();
 
-            if (availableComPorts.Length <= 0)
-                MessageBox.Show("Error: There are no devices connected via COM ports. Please check device connections.");
-
             comPortListBox.Items.AddRange(availableComPorts);
 
             #region Minimize/Close Button Behavior Callback Registration
@@ -243,13 +240,15 @@ namespace USBTemperatureControlLogger
                         Int32 bytes = stream.Read(data, 0, data.Length);
                         tmp = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
                     }
-                    string[] tmpSplit = tmp.Split(new char[] { ':', ' ', '/' }, StringSplitOptions.RemoveEmptyEntries);
+                    string[] tmpSplit = tmp.Split(new string[] { ":", " ", "/", "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
                     //Extract data and add to chart if valid
                     try
                     {
                         double point = double.Parse(tmpSplit[2]);
                         double target = double.Parse(tmpSplit[3]);
-                        bool relayOn = tmpSplit[4] == "ON\r\n" ? true : false;
+                        bool relayOn = tmpSplit[4] == "ON" ? true : false;
+                        if (GetIPAddress() == "0.0.0.0" && !relayOn)
+                            break;
                         AddPoint(point, target, relayOn);
                         SetSampleLabelText("" + point);
                         RefreshChart();
